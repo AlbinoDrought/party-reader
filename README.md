@@ -32,3 +32,9 @@ A basic Android application for Reddit, started as a class project. Still a work
 2. (Optional) Modify your Reddit username in `app/src/main/res/values/strings.xml`
 
 3. Build
+
+## Library Shout-outs
+
+- [JRAW](https://github.com/thatJavaNerd/JRAW)
+
+- [Android Annotations](https://github.com/androidannotations/androidannotations)
