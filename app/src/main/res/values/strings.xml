@@ -8,5 +8,14 @@
     <string name="redditUsername">seanshoots</string>
     <string name="platform">android</string>
     <string name="version">0.0.1</string>
+    <string name="title_activity_login">LoginActivity</string>
     <!-- End User Agent Details -->
+
+    <!-- Login -->
+    <!--
+    These are set in build.gradle
+    <string name="oauthClientId"></string>
+    <string name="oauthRedirectUrl"></string>
+    -->
+    <!-- End Login -->
 </resources>

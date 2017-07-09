@@ -4,6 +4,7 @@ import net.dean.jraw.RedditClient;
 import net.dean.jraw.auth.AuthenticationManager;
 import net.dean.jraw.auth.RefreshTokenHandler;
 import net.dean.jraw.auth.TokenStore;
+import net.dean.jraw.http.oauth.Credentials;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -11,8 +12,11 @@ import org.androidannotations.annotations.EBean;
 
 @EBean(scope = EBean.Scope.Singleton)
 public class Manager {
-    @Bean(ResUserAgentFactory.class)
+    @Bean(ResFactory.class)
     protected UserAgentFactory userAgentFactory;
+
+    @Bean(ResFactory.class)
+    protected CredentialFactory credentialFactory;
 
     protected RedditClient redditClient;
 
@@ -34,5 +38,9 @@ public class Manager {
 
     public AuthenticationManager getAuthenticationManager() {
         return this.authenticationManager;
+    }
+
+    public Credentials getCredentials() {
+        return this.credentialFactory.getCredentials();
     }
 }

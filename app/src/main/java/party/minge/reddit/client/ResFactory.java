@@ -3,13 +3,14 @@ package party.minge.reddit.client;
 import android.content.Context;
 
 import net.dean.jraw.http.UserAgent;
+import net.dean.jraw.http.oauth.Credentials;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.res.StringRes;
 
-@EBean
-public class ResUserAgentFactory implements UserAgentFactory {
+@EBean(scope = EBean.Scope.Singleton)
+public class ResFactory implements UserAgentFactory, CredentialFactory {
     @StringRes
     protected String redditUsername;
 
@@ -21,6 +22,12 @@ public class ResUserAgentFactory implements UserAgentFactory {
 
     protected String packageName;
 
+    @StringRes
+    protected String oauthClientId;
+
+    @StringRes
+    protected String oauthRedirectUrl;
+
     @RootContext
     public void setRootContext(Context context) {
         this.packageName = context.getPackageName();
@@ -29,5 +36,10 @@ public class ResUserAgentFactory implements UserAgentFactory {
     @Override
     public UserAgent getUserAgent() {
         return UserAgent.of(this.platform, this.packageName, this.version, this.redditUsername);
+    }
+
+    @Override
+    public Credentials getCredentials() {
+        return Credentials.installedApp(this.oauthClientId, this.oauthRedirectUrl);
     }
 }

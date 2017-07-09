@@ -11,7 +11,18 @@
     tools:context="party.minge.reddit.MainActivity">
 
     <TextView
+        android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="18dp"
+        android:text="Button" />
 </RelativeLayout>
