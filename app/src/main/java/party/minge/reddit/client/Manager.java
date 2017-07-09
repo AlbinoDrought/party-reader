@@ -12,14 +12,14 @@ import org.androidannotations.annotations.EBean;
 @EBean(scope = EBean.Scope.Singleton)
 public class Manager {
     @Bean(ResUserAgentFactory.class)
-    private UserAgentFactory userAgentFactory;
+    protected UserAgentFactory userAgentFactory;
 
-    private RedditClient redditClient;
+    protected RedditClient redditClient;
 
-    private AuthenticationManager authenticationManager;
+    protected AuthenticationManager authenticationManager;
 
     @Bean(PreferenceTokenStore.class)
-    private TokenStore tokenStore;
+    protected TokenStore tokenStore;
 
     @AfterInject
     public void afterInject() {

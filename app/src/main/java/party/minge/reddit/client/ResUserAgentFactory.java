@@ -11,15 +11,15 @@ import org.androidannotations.annotations.res.StringRes;
 @EBean
 public class ResUserAgentFactory implements UserAgentFactory {
     @StringRes
-    private String redditUsername;
+    protected String redditUsername;
 
     @StringRes
-    private String platform;
+    protected String platform;
 
     @StringRes
-    private String version;
+    protected String version;
 
-    private String packageName;
+    protected String packageName;
 
     @RootContext
     public void setRootContext(Context context) {

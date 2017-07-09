@@ -16,15 +16,15 @@ import party.minge.reddit.R;
 @EBean
 public class PreferenceTokenStore implements TokenStore {
     @RootContext
-    private Context context;
+    protected Context context;
 
     @StringRes
-    private String tokenFile;
+    protected String tokenFile;
 
-    private SharedPreferences preferences;
+    protected SharedPreferences preferences;
 
     @AfterInject
-    private void afterInject() {
+    protected void afterInject() {
         this.preferences = this.context.getSharedPreferences(this.tokenFile, Context.MODE_PRIVATE);
     }
 
