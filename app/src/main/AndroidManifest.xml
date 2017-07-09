@@ -19,7 +19,10 @@
         </activity>
         <activity
             android:name=".LoginActivity_"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".SubredditActivity_"
+            android:label="@string/title_activity_subreddit"></activity>
     </application>
 
 </manifest>

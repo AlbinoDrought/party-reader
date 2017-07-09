@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding_text"
+    android:paddingLeft="@dimen/padding_text"
+    android:paddingRight="@dimen/padding_text"
+    android:paddingTop="@dimen/padding_text"
+    tools:context="party.minge.reddit.PostItemView">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtPostTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Post Title Here"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+        <TextView
+            android:id="@+id/txtPostSubtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="to r/partyreader by Seanshoots (minge.party)"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+        <TextView
+            android:id="@+id/txtPostDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="3 hours ago"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+        <TextView
+            android:id="@+id/txtPostComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1337 comments"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgPostThumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:src="@android:color/transparent" />
+
+</LinearLayout>

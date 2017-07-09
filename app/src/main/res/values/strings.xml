@@ -8,7 +8,6 @@
     <string name="redditUsername">seanshoots</string>
     <string name="platform">android</string>
     <string name="version">0.0.1</string>
-    <string name="title_activity_login">LoginActivity</string>
     <!-- End User Agent Details -->
 
     <!-- Login -->
@@ -18,4 +17,7 @@
     <string name="oauthRedirectUrl"></string>
     -->
     <!-- End Login -->
+    
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_subreddit">SubredditActivity</string>
 </resources>
