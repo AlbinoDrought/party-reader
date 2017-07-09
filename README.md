@@ -1,8 +1,29 @@
 # Party Reader
 
-A basic Android application for Reddit.
+[![license](https://img.shields.io/github/license/AlbinoDrought/party-reader.svg)]()
 
-Started as a class project.
+A basic Android application for Reddit, started as a class project. Still a work-in-progress.
+
+## Feature Roadmap
+
+- ~~Login~~
+
+- Logout
+
+- Viewing a subreddit
+
+- Viewing post "details", comments, etc
+
+- Viewing post link without leaving application
+
+- Viewing user information (karma, comments, posts)
+
+- Comment C~~R~~UD
+
+- Post C~~R~~UD
+
+- Subscribing and usubscribing from subreddits
+
 
 ## Usage
 
