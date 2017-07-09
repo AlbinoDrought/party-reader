@@ -24,5 +24,14 @@
         android:layout_below="@+id/textView"
         android:layout_marginStart="23dp"
         android:layout_marginTop="18dp"
-        android:text="Button" />
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/btnShowFrontpage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnLogin"
+        android:layout_alignBottom="@+id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:text="Show Frontpage" />
 </RelativeLayout>

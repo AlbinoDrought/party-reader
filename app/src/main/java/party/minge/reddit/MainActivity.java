@@ -36,6 +36,11 @@ public class MainActivity extends Activity {
 
     @Click
     public void btnLogin() {
-        LoginActivity_.intent(MainActivity.this).start();
+        LoginActivity_.intent(this).start();
+    }
+
+    @Click
+    public void btnShowFrontpage() {
+        SubredditActivity_.intent(this).start();
     }
 }
