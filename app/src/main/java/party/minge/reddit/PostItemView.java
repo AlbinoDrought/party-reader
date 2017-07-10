@@ -6,7 +6,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import net.dean.jraw.models.OEmbed;
 import net.dean.jraw.models.Submission;
+import net.dean.jraw.models.Thumbnails;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
@@ -39,6 +43,19 @@ public class PostItemView extends LinearLayout {
         this.txtPostComments.setText(this.getPostComments(submission));
 
         // TODO: set thumbnail
+        Thumbnails thumbnails = submission.getThumbnails();
+
+        if (thumbnails != null) {
+            Glide
+                .with(this.getContext())
+                .load(thumbnails.getSource().getUrl())
+                .centerCrop()
+                .placeholder(android.R.color.transparent)
+                .crossFade()
+                .into(this.imgPostThumbnail);
+        } else {
+            this.imgPostThumbnail.setImageResource(android.R.color.transparent);
+        }
     }
 
     private String getPostSubtext(Submission submission) {

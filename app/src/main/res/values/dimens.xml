@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding_text">15px</dimen>
+    <dimen name="thumbnail_width">55dp</dimen>
 </resources>
