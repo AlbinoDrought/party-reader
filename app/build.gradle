@@ -39,7 +39,5 @@ dependencies {
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile "net.dean.jraw:JRAW:$jrawVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
 }
