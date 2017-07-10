@@ -1,6 +1,7 @@
 # Party Reader
 
 [![license](https://img.shields.io/github/license/AlbinoDrought/party-reader.svg)]()
+[![Build Status](https://travis-ci.org/AlbinoDrought/party-reader.svg?branch=master)](https://travis-ci.org/AlbinoDrought/party-reader)
 
 A basic Android application for Reddit, started as a class project. Still a work-in-progress.
 
