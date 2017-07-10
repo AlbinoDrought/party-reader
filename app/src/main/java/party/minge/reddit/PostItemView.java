@@ -48,7 +48,7 @@ public class PostItemView extends LinearLayout {
         if (thumbnails != null) {
             Glide
                 .with(this.getContext())
-                .load(thumbnails.getSource())
+                .load(thumbnails.getSource().getUrl())
                 .centerCrop()
                 .placeholder(android.R.color.transparent)
                 .crossFade()

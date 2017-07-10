@@ -49,11 +49,11 @@
 
     <ImageView
         android:id="@+id/imgPostThumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
+        android:layout_width="@dimen/thumbnail_width"
+        android:layout_height="@dimen/thumbnail_width"
+        android:adjustViewBounds="false"
         android:cropToPadding="false"
+        android:scaleType="fitCenter"
         android:src="@android:color/transparent" />
 
 </LinearLayout>
