@@ -6,10 +6,11 @@ android:
     - platform-tools
     - build-tools-25.0.0
     - android-25
+    - extra-android-m2repository
+    - extra-android-support
 
 jdk:
   - oraclejdk8
 
 script:
-   - (while sleep 3; do echo "y"; done) | $ANDROID_HOME/tools/android update sdk -u
    - ./gradlew build
