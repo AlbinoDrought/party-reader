@@ -5,11 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
+import net.dean.jraw.paginators.SubredditPaginator;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @EBean
@@ -19,8 +23,33 @@ public class PostListAdapter extends BaseAdapter {
 
     protected List<Submission> posts;
 
-    public void setPosts(List<Submission> posts) {
-        this.posts = posts;
+    protected SubredditPaginator paginator;
+
+    public void setPaginator(SubredditPaginator paginator) {
+        this.paginator = paginator;
+        // automatically populate with posts
+        this.gotoNextPage();
+    }
+
+    public void gotoNextPage() {
+        if (!this.hasMore()) return;
+
+        // array and list juggling is done because:
+        // paginator.next returns listings,
+        // and listings cannot be modified
+        Listing<Submission> newPages = this.paginator.next();
+
+        if (this.posts == null) {
+            this.posts = new ArrayList<>();
+        }
+
+        for (Submission page : newPages) {
+            this.posts.add(page);
+        }
+    }
+
+    public boolean hasMore() {
+        return this.paginator.hasNext();
     }
 
     @Override

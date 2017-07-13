@@ -1,11 +1,9 @@
 package party.minge.reddit;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.widget.ListView;
 
-import net.dean.jraw.paginators.SubredditPaginator;
-import net.dean.jraw.paginators.TimePeriod;
+import net.dean.jraw.paginators.SubredditPaginator;6
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -46,12 +44,37 @@ public class SubredditActivity extends Activity {
     @AfterViews
     @Background
     protected void fetchPosts() {
-        this.postListAdapter.setPosts(this.paginator.next());
+        this.postListAdapter.setPaginator(this.paginator);
         this.bindAdapter();
     }
 
     @UiThread
     protected void bindAdapter() {
         this.lvSubredditPosts.setAdapter(this.postListAdapter);
+        this.lvSubredditPosts.setOnScrollListener(new EndlessScrollListener(10) {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+
+                boolean hasMore = SubredditActivity.this.postListAdapter.hasMore();
+
+                if (hasMore) {
+                    // background
+                    SubredditActivity.this.nextPage();
+                }
+
+                return hasMore;
+            }
+        });
+    }
+
+    @Background
+    protected void nextPage() {
+        this.postListAdapter.gotoNextPage();;
+        this.forceRefreshList();
+    }
+
+    @UiThread
+    protected void forceRefreshList() {
+        this.postListAdapter.notifyDataSetChanged();
     }
 }
