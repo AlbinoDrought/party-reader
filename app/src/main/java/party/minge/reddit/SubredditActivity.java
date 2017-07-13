@@ -3,7 +3,7 @@ package party.minge.reddit;
 import android.app.Activity;
 import android.widget.ListView;
 
-import net.dean.jraw.paginators.SubredditPaginator;6
+import net.dean.jraw.paginators.SubredditPaginator;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
