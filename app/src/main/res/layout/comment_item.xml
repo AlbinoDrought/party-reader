@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padding_text"
+    android:paddingLeft="@dimen/padding_text"
+    android:paddingRight="@dimen/padding_text"
+    android:paddingTop="@dimen/padding_text"
+    tools:context="party.minge.reddit.PostItemView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/padding_comment"
+        android:layout_marginTop="@dimen/padding_comment"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtCommentAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="seanshoots"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtCommentScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="5 points"
+            android:textAllCaps="false"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/txtCommentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="5 hours ago"
+            android:textColor="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtCommentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_comment"
+        android:layout_weight="1"
+        android:text="Wow, these memes are really dank! Thanks!" />
+
+    <ListView
+        android:id="@+id/lstSubComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" />
+
+</LinearLayout>

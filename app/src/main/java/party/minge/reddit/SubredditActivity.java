@@ -1,8 +1,11 @@
 package party.minge.reddit;
 
 import android.app.Activity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.SubredditPaginator;
 
 import org.androidannotations.annotations.AfterInject;
@@ -65,6 +68,19 @@ public class SubredditActivity extends Activity {
                 return hasMore;
             }
         });
+        this.lvSubredditPosts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Submission submission = SubredditActivity.this.postListAdapter.getItem(i);
+                SubredditActivity.this.showSubmissionDetails(submission);
+            }
+        });
+    }
+
+    protected void showSubmissionDetails(Submission submission) {
+        SubmissionDetailActivity_.intent(this)
+                .submissionId(submission.getId())
+                .start();
     }
 
     @Background

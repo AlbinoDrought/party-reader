@@ -22,7 +22,10 @@
             android:label="@string/title_activity_login" />
         <activity
             android:name=".SubredditActivity_"
-            android:label="@string/title_activity_subreddit"></activity>
+            android:label="@string/title_activity_subreddit" />
+        <activity
+            android:name=".SubmissionDetailActivity_"
+            android:label="@string/title_activity_submission_detail"></activity>
     </application>
 
 </manifest>
