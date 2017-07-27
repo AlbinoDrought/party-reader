@@ -52,10 +52,4 @@
         android:layout_weight="1"
         android:text="Wow, these memes are really dank! Thanks!" />
 
-    <ListView
-        android:id="@+id/lstSubComments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none" />
-
 </LinearLayout>
