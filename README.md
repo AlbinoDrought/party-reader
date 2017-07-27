@@ -11,9 +11,11 @@ A basic Android application for Reddit, started as a class project. Still a work
 
 - Logout
 
+- ~~Viewing the front page~~
+
 - Viewing a subreddit
 
-- Viewing post "details", comments, etc
+- Viewing post "details", ~~comments~~, etc
 
 - Viewing post link without leaving application
 
