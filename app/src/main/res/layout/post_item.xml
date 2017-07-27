@@ -9,10 +9,11 @@
     tools:context="party.minge.reddit.PostItemView">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingRight="@dimen/padding_text">
 
         <TextView
             android:id="@+id/txtPostTitle"
@@ -51,6 +52,7 @@
         android:id="@+id/imgPostThumbnail"
         android:layout_width="@dimen/thumbnail_width"
         android:layout_height="@dimen/thumbnail_width"
+        android:layout_marginLeft="@dimen/padding_text"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
