@@ -2,6 +2,7 @@ package party.minge.reddit;
 
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,11 +33,15 @@ public class PostItemView extends LinearLayout {
     @ViewById
     protected ImageView imgPostThumbnail;
 
+    protected Submission submission;
+
     public PostItemView(Context context) {
         super(context);
     }
 
     public void bind(Submission submission) {
+        this.submission = submission;
+
         this.txtPostTitle.setText(submission.getTitle());
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
         this.txtPostDate.setText(submission.getCreated().toString());
@@ -56,6 +61,22 @@ public class PostItemView extends LinearLayout {
         } else {
             this.imgPostThumbnail.setImageResource(android.R.color.transparent);
         }
+
+        this.imgPostThumbnail.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PostItemView.this.viewPostResource();
+            }
+        });
+    }
+
+    private void viewPostResource() {
+        if (this.submission.isSelfPost()) {
+            // self posts have no link, ignore
+            return;
+        }
+
+        ExternalWebResourceActivity_.intent(this.getContext()).url(this.submission.getUrl()).start();
     }
 
     private String getPostSubtext(Submission submission) {
