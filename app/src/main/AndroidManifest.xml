@@ -12,6 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!--
         <activity android:name=".MainActivity_">
         </activity>
@@ -31,6 +32,9 @@
         <activity
             android:name=".SubmissionDetailActivity_"
             android:label="@string/title_activity_submission_detail" />
+        <activity
+            android:name=".ExternalWebResourceActivity_"
+            android:label="@string/title_activity_external_web_resource" />
     </application>
 
 </manifest>
