@@ -1,6 +1,7 @@
 package party.minge.reddit;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -25,6 +26,8 @@ import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
+
+import java.util.Locale;
 
 import party.minge.reddit.client.Manager;
 import party.minge.reddit.client.Upvoter;
@@ -115,7 +118,7 @@ public class PostItemView extends LinearLayout {
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
         this.txtPostDate.setText(submission.getCreated().toString());
         this.txtPostComments.setText(this.getPostComments(submission));
-        this.txtScore.setText(submission.getScore().toString());
+        this.txtScore.setText(String.format(Locale.US, "%d", submission.getScore()));
 
         this.upvoter.setUpvotable(submission);
         this.updateVoteColors(submission.getVote());
