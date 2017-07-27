@@ -41,5 +41,6 @@ dependencies {
     compile "net.dean.jraw:JRAW:$jrawVersion"
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.github.bmelnychuk:atv:1.2.+'
     testCompile 'junit:junit:4.12'
 }
