@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="seanshoots"
+            tools:text="seanshoots"
             android:textStyle="bold" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="5 points"
+            tools:text="5 points"
             android:textAllCaps="false"
             android:textColor="@android:color/darker_gray" />
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="5 hours ago"
+            tools:text="5 hours ago"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
@@ -47,9 +47,9 @@
     <TextView
         android:id="@+id/txtCommentText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="@dimen/padding_comment"
         android:layout_weight="1"
-        android:text="Wow, these memes are really dank! Thanks!" />
+        tools:text="Wow, these memes are really dank! Thanks!" />
 
 </LinearLayout>

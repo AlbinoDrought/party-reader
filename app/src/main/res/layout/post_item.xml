@@ -24,25 +24,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="{md-keyboard-arrow-up}" />
+            android:text="{md-keyboard-arrow-up}"
+            tools:text="up" />
 
         <TextView
             android:id="@+id/txtScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="1337" />
+            tools:text="1337" />
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/btnDownvote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="{md-keyboard-arrow-down}" />
+            android:text="{md-keyboard-arrow-down}"
+            tools:text="down" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
@@ -53,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Post Title Here"
+            tools:text="Post Title Here"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
         <TextView
@@ -61,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="to r/partyreader by Seanshoots (minge.party)"
+            tools:text="to r/partyreader by Seanshoots (minge.party)"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
 
         <TextView
@@ -69,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="3 hours ago"
+            tools:text="3 hours ago"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
 
         <TextView
@@ -77,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1337 comments"
+            tools:text="1337 comments"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
     </LinearLayout>
 
