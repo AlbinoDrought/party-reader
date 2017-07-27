@@ -121,7 +121,6 @@ public class PostItemView extends LinearLayout {
         this.txtScore.setText(String.format(Locale.US, "%d", submission.getScore()));
 
         this.upvoter.setUpvotable(submission);
-        this.updateVoteColors(submission.getVote());
 
         Thumbnails thumbnails = submission.getThumbnails();
 

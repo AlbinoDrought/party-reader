@@ -26,7 +26,16 @@ public class Upvoter<T extends Thing & Votable> {
 
     public void setUpvotable(T thing) {
         this.upvotable = thing;
-        this.currentVoteDirection = thing.getVote();
+
+        this.setVoteDirection(thing.getVote());
+    }
+
+    protected void setVoteDirection(VoteDirection voteDirection) {
+        this.currentVoteDirection = voteDirection;
+
+        if (this.voteChangeListener != null) {
+            this.voteChangeListener.onVoteChanged(voteDirection);
+        }
     }
 
     public void setVoteChangeListener(VoteChangeListener voteChangeListener) {
@@ -48,14 +57,13 @@ public class Upvoter<T extends Thing & Votable> {
         }
 
         // update vote on ui instantly, reverting if it fails
-        this.voteChangeListener.onVoteChanged(voteDirection);
+        this.setVoteDirection(voteDirection);
 
         try {
             this.manager.getAccountManager().vote(this.upvotable, voteDirection);
-            this.currentVoteDirection = voteDirection;
         } catch (ApiException ex) {
             Log.e("vote", ex.toString());
-            this.voteChangeListener.onVoteChanged(oldDirection);
+            this.setVoteDirection(oldDirection);
         }
 
         this.currentlyVoting = false;
