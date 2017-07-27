@@ -2,22 +2,46 @@ package party.minge.reddit;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.joanzapata.iconify.widget.IconTextView;
 
+import net.dean.jraw.ApiException;
 import net.dean.jraw.models.OEmbed;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.Thumbnails;
+import net.dean.jraw.models.VoteDirection;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EViewGroup;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
+
+import party.minge.reddit.client.Manager;
 
 @EViewGroup(R.layout.post_item)
 public class PostItemView extends LinearLayout {
+    @Bean
+    protected Manager manager;
+
+    @ColorRes(R.color.colorUpvote)
+    protected int colorUpvote;
+
+    @ColorRes(R.color.colorDownvote)
+    protected int colorDownvote;
+
+    @ColorRes(R.color.colorNoVote)
+    protected int colorNoVote;
+
     @ViewById
     protected TextView txtPostTitle;
 
@@ -33,10 +57,45 @@ public class PostItemView extends LinearLayout {
     @ViewById
     protected ImageView imgPostThumbnail;
 
+    @ViewById
+    protected IconTextView btnUpvote;
+
+    @ViewById
+    protected IconTextView btnDownvote;
+
+    @ViewById
+    protected TextView txtScore;
+
+    private boolean currentlyVoting = false;
+    protected VoteDirection currentVoteDirection;
     protected Submission submission;
 
     public PostItemView(Context context) {
         super(context);
+    }
+
+    @AfterViews
+    protected void initClickListeners() {
+        this.imgPostThumbnail.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PostItemView.this.viewPostResource();
+            }
+        });
+
+        this.btnDownvote.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PostItemView.this.performVote(VoteDirection.DOWNVOTE);
+            }
+        });
+
+        this.btnUpvote.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PostItemView.this.performVote(VoteDirection.UPVOTE);
+            }
+        });
     }
 
     public void bind(Submission submission) {
@@ -46,8 +105,11 @@ public class PostItemView extends LinearLayout {
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
         this.txtPostDate.setText(submission.getCreated().toString());
         this.txtPostComments.setText(this.getPostComments(submission));
+        this.txtScore.setText(submission.getScore().toString());
 
-        // TODO: set thumbnail
+        this.currentVoteDirection = submission.getVote();
+        this.updateVoteColors(this.currentVoteDirection);
+
         Thumbnails thumbnails = submission.getThumbnails();
 
         if (thumbnails != null) {
@@ -61,13 +123,6 @@ public class PostItemView extends LinearLayout {
         } else {
             this.imgPostThumbnail.setImageResource(android.R.color.transparent);
         }
-
-        this.imgPostThumbnail.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PostItemView.this.viewPostResource();
-            }
-        });
     }
 
     private void viewPostResource() {
@@ -80,6 +135,40 @@ public class PostItemView extends LinearLayout {
                 .url(this.submission.getUrl())
                 .domain(this.submission.getDomain())
                 .start();
+    }
+
+    @Background
+    protected void performVote(VoteDirection direction) {
+        if (this.currentlyVoting) {
+            return;
+        }
+
+        this.currentlyVoting = true;
+        // un-vote if attempting to vote the same direction
+        VoteDirection oldDirection = this.currentVoteDirection;
+
+        if (direction == oldDirection) {
+            direction = VoteDirection.NO_VOTE;
+        }
+
+        this.currentVoteDirection = direction;
+        this.updateVoteColors(direction);
+
+        try {
+            this.manager.getAccountManager().vote(this.submission, direction);
+        } catch (ApiException ex) {
+            Log.e("vote", ex.toString());
+            this.currentVoteDirection = oldDirection;
+            this.updateVoteColors(oldDirection);
+        }
+
+        this.currentlyVoting = false;
+    }
+
+    @UiThread
+    protected void updateVoteColors(VoteDirection voteDirection) {
+        this.btnUpvote.setTextColor(voteDirection == VoteDirection.UPVOTE ? this.colorUpvote : this.colorNoVote);
+        this.btnDownvote.setTextColor(voteDirection == VoteDirection.DOWNVOTE ? this.colorDownvote : this.colorNoVote);
     }
 
     private String getPostSubtext(Submission submission) {

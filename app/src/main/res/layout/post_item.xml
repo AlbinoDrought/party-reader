@@ -20,6 +20,7 @@
         tools:context="party.minge.reddit.PostItemView">
 
         <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/btnUpvote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -33,6 +34,7 @@
             android:text="1337" />
 
         <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/btnDownvote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
