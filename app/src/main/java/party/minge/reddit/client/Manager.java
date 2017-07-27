@@ -5,6 +5,7 @@ import net.dean.jraw.auth.AuthenticationManager;
 import net.dean.jraw.auth.RefreshTokenHandler;
 import net.dean.jraw.auth.TokenStore;
 import net.dean.jraw.http.oauth.Credentials;
+import net.dean.jraw.http.oauth.OAuthData;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -17,6 +18,9 @@ public class Manager {
 
     @Bean(ResFactory.class)
     protected CredentialFactory credentialFactory;
+
+    @Bean(UserlessCredentialFactory.class)
+    protected CredentialFactory anonymousCredentialFactory;
 
     protected RedditClient redditClient;
 
@@ -32,6 +36,28 @@ public class Manager {
         this.authenticationManager.init(this.redditClient, new RefreshTokenHandler(this.tokenStore, this.redditClient));
     }
 
+    /**
+     * Anonymously authenticates if required.
+     * If already authenticated, does not re-authenticate.
+     *
+     * @param authenticationCallback Methods to call on success or failure.
+     */
+    public void authenticateIfRequired(AuthenticationCallback authenticationCallback) {
+        if (this.getClient().isAuthenticated()) {
+            authenticationCallback.onSuccessfulAuthentication();
+            return;
+        }
+
+        try {
+            OAuthData authData = this.getClient().getOAuthHelper().easyAuth(this.getAnonymousCredentials());
+            this.getClient().authenticate(authData);
+
+            authenticationCallback.onSuccessfulAuthentication();
+        } catch (Exception ex) {
+            authenticationCallback.onFailedAuthentication(ex);
+        }
+    }
+
     public RedditClient getClient() {
         return this.redditClient;
     }
@@ -42,5 +68,9 @@ public class Manager {
 
     public Credentials getCredentials() {
         return this.credentialFactory.getCredentials();
+    }
+
+    public Credentials getAnonymousCredentials() {
+        return this.anonymousCredentialFactory.getCredentials();
     }
 }

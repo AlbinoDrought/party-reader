@@ -1,6 +1,7 @@
 package party.minge.reddit;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,6 +18,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import party.minge.reddit.client.AuthenticationCallback;
 import party.minge.reddit.client.Manager;
 
 @EActivity(R.layout.activity_subreddit)
@@ -45,6 +47,21 @@ public class SubredditActivity extends Activity {
     }
 
     @AfterViews
+    @Background
+    protected void authenticateIfRequired() {
+        this.manager.authenticateIfRequired(new AuthenticationCallback() {
+            @Override
+            public void onSuccessfulAuthentication() {
+                SubredditActivity.this.fetchPosts();
+            }
+
+            @Override
+            public void onFailedAuthentication(Exception e) {
+                Log.e("subreddit-error", e.toString());
+            }
+        });
+    }
+
     @Background
     protected void fetchPosts() {
         this.postListAdapter.setPaginator(this.paginator);
