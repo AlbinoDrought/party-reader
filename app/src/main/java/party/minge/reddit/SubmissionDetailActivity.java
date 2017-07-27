@@ -22,18 +22,20 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import party.minge.reddit.client.Manager;
-import party.minge.reddit.treeview.CommentTreeNodeAdapter;
+import party.minge.reddit.treeview.SubmissionTreeNodeAdapter;
 
 @EActivity(R.layout.activity_submission_detail)
 public class SubmissionDetailActivity extends Activity {
     @Extra
     protected String submissionId;
 
+    protected Submission submission;
+
     @Bean
     protected Manager manager;
 
     @Bean
-    protected CommentTreeNodeAdapter adapter;
+    protected SubmissionTreeNodeAdapter adapter;
 
     @ViewById
     protected LinearLayout grpMain;
@@ -43,9 +45,8 @@ public class SubmissionDetailActivity extends Activity {
     @AfterViews
     @Background
     protected void init() {
-        CommentNode node = this.getCommentNode();
-
-        this.treeNode = this.adapter.fromCommentNode(node);
+        this.submission = this.manager.getClient().getSubmission(this.submissionId);
+        this.treeNode = this.adapter.fromSubmission(submission);
 
         this.setAdapter();
     }
@@ -54,11 +55,5 @@ public class SubmissionDetailActivity extends Activity {
     protected void setAdapter() {
         AndroidTreeView treeView = new AndroidTreeView(this, this.treeNode);
         this.grpMain.addView(treeView.getView());
-    }
-
-    protected CommentNode getCommentNode() {
-        Submission submission = this.manager.getClient().getSubmission(this.submissionId);
-
-        return submission.getComments();
     }
 }
