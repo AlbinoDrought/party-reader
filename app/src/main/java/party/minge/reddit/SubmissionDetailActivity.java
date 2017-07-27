@@ -18,12 +18,14 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.Fullscreen;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import party.minge.reddit.client.Manager;
 import party.minge.reddit.treeview.SubmissionTreeNodeAdapter;
 
+@Fullscreen
 @EActivity(R.layout.activity_submission_detail)
 public class SubmissionDetailActivity extends Activity {
     @Extra
