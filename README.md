@@ -17,7 +17,7 @@ A basic Android application for Reddit, started as a class project. Still a work
 
 - Viewing post "details", ~~comments~~, etc
 
-- Viewing post link without leaving application
+- ~~Viewing post link without leaving application~~
 
 - Viewing user information (karma, comments, posts)
 
