@@ -6,6 +6,7 @@ import net.dean.jraw.auth.RefreshTokenHandler;
 import net.dean.jraw.auth.TokenStore;
 import net.dean.jraw.http.oauth.Credentials;
 import net.dean.jraw.http.oauth.OAuthData;
+import net.dean.jraw.managers.AccountManager;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -26,6 +27,8 @@ public class Manager {
 
     protected AuthenticationManager authenticationManager;
 
+    protected AccountManager accountManager;
+
     @Bean(PreferenceTokenStore.class)
     protected TokenStore tokenStore;
 
@@ -34,6 +37,7 @@ public class Manager {
         this.redditClient = new RedditClient(this.userAgentFactory.getUserAgent());
         this.authenticationManager = AuthenticationManager.get();
         this.authenticationManager.init(this.redditClient, new RefreshTokenHandler(this.tokenStore, this.redditClient));
+        this.accountManager = new AccountManager(this.redditClient);
     }
 
     /**
@@ -60,6 +64,10 @@ public class Manager {
 
     public RedditClient getClient() {
         return this.redditClient;
+    }
+
+    public AccountManager getAccountManager() {
+        return this.accountManager;
     }
 
     public AuthenticationManager getAuthenticationManager() {
