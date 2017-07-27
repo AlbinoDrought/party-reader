@@ -2,6 +2,7 @@ package party.minge.reddit;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.view.MenuItem;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,10 +19,23 @@ public class ExternalWebResourceActivity extends Activity {
     protected WebView webview;
 
     @Extra
+    protected String domain;
+
+    @Extra
     protected String url;
 
     @AfterViews
-    @UiThread
+    protected void showUp() {
+        this.getActionBar().setDisplayShowHomeEnabled(false);
+        this.getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @AfterViews
+    protected void useDomainAsTitle() {
+        this.setTitle(this.domain);
+    }
+
+    @AfterViews
     @SuppressLint("SetJavaScriptEnabled")
     protected void visitUrl() {
         this.webview.setWebChromeClient(new WebChromeClient());
@@ -35,5 +49,13 @@ public class ExternalWebResourceActivity extends Activity {
         this.webview.getSettings().setJavaScriptEnabled(true);
 
         this.webview.loadUrl(this.url);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // currently, only called when "up" is pressed.
+        // close our intent when this occurs.
+        this.finish();
+        return true;
     }
 }

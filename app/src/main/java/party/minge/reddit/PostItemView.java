@@ -76,7 +76,10 @@ public class PostItemView extends LinearLayout {
             return;
         }
 
-        ExternalWebResourceActivity_.intent(this.getContext()).url(this.submission.getUrl()).start();
+        ExternalWebResourceActivity_.intent(this.getContext())
+                .url(this.submission.getUrl())
+                .domain(this.submission.getDomain())
+                .start();
     }
 
     private String getPostSubtext(Submission submission) {
