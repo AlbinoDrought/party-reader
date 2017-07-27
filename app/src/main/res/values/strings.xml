@@ -17,7 +17,8 @@
     <string name="oauthRedirectUrl"></string>
     -->
     <!-- End Login -->
-    
+
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_subreddit">SubredditActivity</string>
+    <string name="title_activity_submission_detail">SubmissionDetailActivity</string>
 </resources>
