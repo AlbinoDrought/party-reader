@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".SubmissionDetailActivity_"
-            android:label="@string/title_activity_submission_detail"></activity>
+            android:label="@string/title_activity_submission_detail" />
     </application>
 
 </manifest>
