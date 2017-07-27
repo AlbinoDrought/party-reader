@@ -27,6 +27,8 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
 
 import party.minge.reddit.client.Manager;
+import party.minge.reddit.client.Upvoter;
+import party.minge.reddit.client.VoteChangeListener;
 
 @EViewGroup(R.layout.post_item)
 public class PostItemView extends LinearLayout {
@@ -66,8 +68,9 @@ public class PostItemView extends LinearLayout {
     @ViewById
     protected TextView txtScore;
 
-    private boolean currentlyVoting = false;
-    protected VoteDirection currentVoteDirection;
+    @Bean
+    protected Upvoter<Submission> upvoter;
+
     protected Submission submission;
 
     public PostItemView(Context context) {
@@ -86,14 +89,21 @@ public class PostItemView extends LinearLayout {
         this.btnDownvote.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                PostItemView.this.performVote(VoteDirection.DOWNVOTE);
+                PostItemView.this.upvoter.performVote(VoteDirection.DOWNVOTE);
             }
         });
 
         this.btnUpvote.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                PostItemView.this.performVote(VoteDirection.UPVOTE);
+                PostItemView.this.upvoter.performVote(VoteDirection.UPVOTE);
+            }
+        });
+
+        this.upvoter.setVoteChangeListener(new VoteChangeListener() {
+            @Override
+            public void onVoteChanged(VoteDirection voteDirection) {
+                PostItemView.this.updateVoteColors(voteDirection);
             }
         });
     }
@@ -107,8 +117,8 @@ public class PostItemView extends LinearLayout {
         this.txtPostComments.setText(this.getPostComments(submission));
         this.txtScore.setText(submission.getScore().toString());
 
-        this.currentVoteDirection = submission.getVote();
-        this.updateVoteColors(this.currentVoteDirection);
+        this.upvoter.setUpvotable(submission);
+        this.updateVoteColors(submission.getVote());
 
         Thumbnails thumbnails = submission.getThumbnails();
 
@@ -135,34 +145,6 @@ public class PostItemView extends LinearLayout {
                 .url(this.submission.getUrl())
                 .domain(this.submission.getDomain())
                 .start();
-    }
-
-    @Background
-    protected void performVote(VoteDirection direction) {
-        if (this.currentlyVoting) {
-            return;
-        }
-
-        this.currentlyVoting = true;
-        // un-vote if attempting to vote the same direction
-        VoteDirection oldDirection = this.currentVoteDirection;
-
-        if (direction == oldDirection) {
-            direction = VoteDirection.NO_VOTE;
-        }
-
-        this.currentVoteDirection = direction;
-        this.updateVoteColors(direction);
-
-        try {
-            this.manager.getAccountManager().vote(this.submission, direction);
-        } catch (ApiException ex) {
-            Log.e("vote", ex.toString());
-            this.currentVoteDirection = oldDirection;
-            this.updateVoteColors(oldDirection);
-        }
-
-        this.currentlyVoting = false;
     }
 
     @UiThread
