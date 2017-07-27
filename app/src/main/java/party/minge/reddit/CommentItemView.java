@@ -16,6 +16,7 @@ import org.androidannotations.annotations.ViewById;
 public class CommentItemView extends LinearLayout {
     // the two consts that follow this comment
     // were very precisely chosen ;)
+    static final int PX_MIN = 15; // @dimen/padding_text - not sure how to actually reference this here
     static final int MAX_DEPTH = 7;
     static final int PX_PER_DEPTH = 50;
 
@@ -45,9 +46,11 @@ public class CommentItemView extends LinearLayout {
 
         Comment c = commentNode.getComment();
 
-        int commentDepth = commentNode.getDepth();
+        // no comment node is actually at 0 depth. that is the depth of the root node.
+        // so, inset our comment depth by 1.
+        int commentDepth = commentNode.getDepth() - 1;
         this.grpMain.setPadding(
-                Math.min(commentDepth, MAX_DEPTH) * PX_PER_DEPTH,
+                PX_MIN + (Math.min(commentDepth, MAX_DEPTH) * PX_PER_DEPTH),
                 this.getPaddingTop(),
                 this.getPaddingRight(),
                 this.getPaddingBottom()
