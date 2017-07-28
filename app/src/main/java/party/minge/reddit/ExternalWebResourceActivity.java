@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.MenuItem;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -46,7 +47,17 @@ public class ExternalWebResourceActivity extends Activity {
         this.webview.setWebViewClient(new WebViewClient());
 
         // allow js
-        this.webview.getSettings().setJavaScriptEnabled(true);
+        WebSettings settings = this.webview.getSettings();
+
+        // attempt to initially fit content without requiring zooms
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+
+        // allow zooming
+        settings.setBuiltInZoomControls(true);
+
+        // allow js
+        settings.setJavaScriptEnabled(true);
 
         this.webview.loadUrl(this.url);
     }
