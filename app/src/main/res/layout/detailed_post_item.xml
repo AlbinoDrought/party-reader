@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padding_text"
+    android:paddingLeft="@dimen/padding_text"
+    android:paddingRight="@dimen/padding_text"
+    android:paddingTop="@dimen/padding_text"
+    tools:context="party.minge.reddit.PostItemView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_text"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padding_text"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtPostTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                tools:text="Post Title Here" />
+
+            <TextView
+                android:id="@+id/txtPostSubtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                tools:text="by Seanshoots" />
+
+            <TextView
+                android:id="@+id/txtPostSubreddit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                tools:text="r/partyreader" />
+
+            <TextView
+                android:id="@+id/txtPostDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                tools:text="3 hours ago" />
+
+            <TextView
+                android:id="@+id/txtPostComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                tools:text="1337 comments" />
+
+            <TextView
+                android:id="@+id/txtPostVotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                tools:text="69 points (94% upvoted)" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgPostThumbnail"
+            android:layout_width="@dimen/thumbnail_width"
+            android:layout_height="@dimen/thumbnail_width"
+            android:layout_marginLeft="@dimen/padding_text"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:src="@android:color/transparent" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtPostBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_text"
+        android:layout_marginTop="@dimen/padding_text"
+        android:layout_weight="1"
+        tools:text="  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut dolor venenatis diam varius fringilla id sit amet mauris. Etiam sed purus nibh. Aliquam non sodales metus. Nullam bibendum volutpat iaculis. Aliquam erat volutpat. Sed tortor sem, egestas nec pellentesque vitae, vehicula placerat nibh. Vivamus metus lorem, euismod nec lorem non, ultrices tincidunt diam. Integer leo massa, tempor id ante eget, tempor vehicula est. Vivamus finibus consectetur massa quis fermentum.  Donec vitae aliquam neque. Nulla dictum sodales mattis. Morbi convallis lorem sed porta rhoncus. Aliquam erat volutpat. Suspendisse tincidunt hendrerit maximus. Curabitur est sapien, fringilla a consectetur sed, bibendum et dui. Aenean efficitur hendrerit ex, feugiat congue odio interdum sit amet. Aliquam semper ligula non porttitor luctus. Aliquam erat volutpat. Donec vitae dui nulla. Duis et porttitor nulla. Mauris quis massa erat. " />
+
+</LinearLayout>

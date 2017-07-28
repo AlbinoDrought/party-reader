@@ -7,8 +7,8 @@ import com.unnamed.b.atv.model.TreeNode;
 
 import net.dean.jraw.models.Submission;
 
-import party.minge.reddit.PostItemView;
-import party.minge.reddit.PostItemView_;
+import party.minge.reddit.DetailedPostItemView;
+import party.minge.reddit.DetailedPostItemView_;
 
 public class SubmissionNodeViewHolder extends TreeNode.BaseNodeViewHolder<Submission> {
     public SubmissionNodeViewHolder(Context context) {
@@ -17,7 +17,7 @@ public class SubmissionNodeViewHolder extends TreeNode.BaseNodeViewHolder<Submis
 
     @Override
     public View createNodeView(TreeNode node, Submission value) {
-        PostItemView view = PostItemView_.build(this.context);
+        DetailedPostItemView view = DetailedPostItemView_.build(this.context);
 
         view.bind(value);
 
