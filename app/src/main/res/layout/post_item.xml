@@ -11,8 +11,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginRight="@dimen/padding_text"
         android:gravity="center_vertical"
+        android:orientation="vertical"
         android:paddingBottom="@dimen/padding_text"
         android:paddingLeft="@dimen/padding_text"
         android:paddingRight="@dimen/padding_text"
@@ -23,8 +24,10 @@
             android:id="@+id/btnUpvote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_text"
             android:gravity="center_horizontal"
             android:text="{md-keyboard-arrow-up}"
+            android:textSize="24sp"
             tools:text="up" />
 
         <TextView
@@ -38,49 +41,52 @@
             android:id="@+id/btnDownvote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_text"
             android:gravity="center_horizontal"
             android:text="{md-keyboard-arrow-down}"
+            android:textSize="24sp"
             tools:text="down" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_text"
+        android:layout_marginRight="@dimen/padding_text"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingRight="@dimen/padding_text">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtPostTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="Post Title Here"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            tools:text="Post Title Here" />
 
         <TextView
             android:id="@+id/txtPostSubtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="to r/partyreader by Seanshoots (minge.party)"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="to r/partyreader by Seanshoots (minge.party)" />
 
         <TextView
             android:id="@+id/txtPostDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="3 hours ago"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="3 hours ago" />
 
         <TextView
             android:id="@+id/txtPostComments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="1337 comments"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="1337 comments" />
     </LinearLayout>
 
     <ImageView
