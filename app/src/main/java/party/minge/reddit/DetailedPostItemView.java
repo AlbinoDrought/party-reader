@@ -1,27 +1,20 @@
 package party.minge.reddit;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.Target;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import net.dean.jraw.ApiException;
-import net.dean.jraw.models.OEmbed;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.Thumbnails;
 import net.dean.jraw.models.VoteDirection;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.UiThread;
@@ -34,19 +27,10 @@ import party.minge.reddit.client.Manager;
 import party.minge.reddit.client.Upvoter;
 import party.minge.reddit.client.VoteChangeListener;
 
-@EViewGroup(R.layout.post_item)
-public class PostItemView extends LinearLayout {
+@EViewGroup(R.layout.detailed_post_item)
+public class DetailedPostItemView extends LinearLayout {
     @Bean
     protected Manager manager;
-
-    @ColorRes(R.color.colorUpvote)
-    protected int colorUpvote;
-
-    @ColorRes(R.color.colorDownvote)
-    protected int colorDownvote;
-
-    @ColorRes(R.color.colorNoVote)
-    protected int colorNoVote;
 
     @ViewById
     protected TextView txtPostTitle;
@@ -55,31 +39,26 @@ public class PostItemView extends LinearLayout {
     protected TextView txtPostSubtext;
 
     @ViewById
+    protected TextView txtPostVotes;
+
+    @ViewById
+    protected TextView txtPostSubreddit;
+
+    @ViewById
     protected TextView txtPostDate;
 
     @ViewById
     protected TextView txtPostComments;
 
     @ViewById
+    protected TextView txtPostBody;
+
+    @ViewById
     protected ImageView imgPostThumbnail;
-
-    @ViewById
-    protected IconTextView btnUpvote;
-
-    @ViewById
-    protected IconTextView btnDownvote;
-
-    @ViewById
-    protected TextView txtScore;
-
-    protected Target<?> glideTarget;
-
-    @Bean
-    protected Upvoter<Submission> upvoter;
 
     protected Submission submission;
 
-    public PostItemView(Context context) {
+    public DetailedPostItemView(Context context) {
         super(context);
     }
 
@@ -88,28 +67,7 @@ public class PostItemView extends LinearLayout {
         this.imgPostThumbnail.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                PostItemView.this.viewPostResource();
-            }
-        });
-
-        this.btnDownvote.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PostItemView.this.upvoter.performVote(VoteDirection.DOWNVOTE);
-            }
-        });
-
-        this.btnUpvote.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PostItemView.this.upvoter.performVote(VoteDirection.UPVOTE);
-            }
-        });
-
-        this.upvoter.setVoteChangeListener(new VoteChangeListener() {
-            @Override
-            public void onVoteChanged(VoteDirection voteDirection) {
-                PostItemView.this.updateVoteColors(voteDirection);
+                DetailedPostItemView.this.viewPostResource();
             }
         });
     }
@@ -121,21 +79,21 @@ public class PostItemView extends LinearLayout {
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
         this.txtPostDate.setText(submission.getCreated().toString());
         this.txtPostComments.setText(this.getPostComments(submission));
-        this.txtScore.setText(String.format(Locale.US, "%d", submission.getScore()));
+        this.txtPostVotes.setText(String.format(Locale.US, "%d points (%d%% upvoted)", submission.getScore(), submission.getUpvoteRatio().intValue()));
 
-        this.upvoter.setUpvotable(submission);
+        String selfText = submission.getSelftext();
+
+        if (selfText != null && selfText.length() > 0) {
+            this.txtPostBody.setText(selfText);
+            this.txtPostBody.setVisibility(VISIBLE);
+        } else {
+            this.txtPostBody.setVisibility(GONE);
+        }
 
         Thumbnails thumbnails = submission.getThumbnails();
 
-        // stop loading the previous image
-        if (this.glideTarget != null) {
-            Glide.clear(this.glideTarget);
-            this.glideTarget = null;
-        }
-
         if (thumbnails != null) {
-            // store target so it can be cancelled later
-            this.glideTarget = Glide
+            Glide
                 .with(this.getContext())
                 .load(thumbnails.getSource().getUrl())
                 .centerCrop()
@@ -157,12 +115,6 @@ public class PostItemView extends LinearLayout {
                 .url(this.submission.getUrl())
                 .domain(this.submission.getDomain())
                 .start();
-    }
-
-    @UiThread
-    protected void updateVoteColors(VoteDirection voteDirection) {
-        this.btnUpvote.setTextColor(voteDirection == VoteDirection.UPVOTE ? this.colorUpvote : this.colorNoVote);
-        this.btnDownvote.setTextColor(voteDirection == VoteDirection.DOWNVOTE ? this.colorDownvote : this.colorNoVote);
     }
 
     private String getPostSubtext(Submission submission) {

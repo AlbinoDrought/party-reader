@@ -9,43 +9,84 @@
     tools:context="party.minge.reddit.PostItemView">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/padding_text"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingRight="@dimen/padding_text">
+        android:paddingBottom="@dimen/padding_text"
+        android:paddingLeft="@dimen/padding_text"
+        android:paddingRight="@dimen/padding_text"
+        android:paddingTop="@dimen/padding_text"
+        tools:context="party.minge.reddit.PostItemView">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/btnUpvote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_text"
+            android:gravity="center_horizontal"
+            android:text="{md-keyboard-arrow-up}"
+            android:textSize="24sp"
+            tools:text="up" />
+
+        <TextView
+            android:id="@+id/txtScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            tools:text="1337" />
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/btnDownvote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_text"
+            android:gravity="center_horizontal"
+            android:text="{md-keyboard-arrow-down}"
+            android:textSize="24sp"
+            tools:text="down" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_text"
+        android:layout_marginRight="@dimen/padding_text"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtPostTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Post Title Here"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            tools:text="Post Title Here" />
 
         <TextView
             android:id="@+id/txtPostSubtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="to r/partyreader by Seanshoots (minge.party)"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="to r/partyreader by Seanshoots (minge.party)" />
 
         <TextView
             android:id="@+id/txtPostDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="3 hours ago"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="3 hours ago" />
 
         <TextView
             android:id="@+id/txtPostComments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1337 comments"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            tools:text="1337 comments" />
     </LinearLayout>
 
     <ImageView

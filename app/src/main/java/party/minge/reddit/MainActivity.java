@@ -11,7 +11,7 @@ import org.androidannotations.annotations.ViewById;
 
 import party.minge.reddit.client.Manager;
 
-@EActivity(R.layout.activity_main)
+/*@EActivity(R.layout.activity_main)
 public class MainActivity extends Activity {
     @ViewById
     protected TextView txtUsername;
@@ -41,4 +41,4 @@ public class MainActivity extends Activity {
     public void btnShowFrontpage() {
         SubredditActivity_.intent(this).start();
     }
-}
+}*/

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reddit</string>
+    <string name="app_name">PartyReader</string>
 
     <!-- SharedPrefs file name -->
     <string name="tokenFile">token</string>
@@ -18,8 +18,8 @@
     -->
     <!-- End Login -->
 
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_subreddit">SubredditActivity</string>
-    <string name="title_activity_submission_detail">SubmissionDetailActivity</string>
-    <string name="title_activity_external_web_resource">ExternalWebResourceActivity</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_subreddit">Front Page</string>
+    <string name="title_activity_submission_detail">Post Details</string>
+    <string name="title_activity_external_web_resource">Browser</string>
 </resources>

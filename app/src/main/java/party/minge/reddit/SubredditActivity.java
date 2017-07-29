@@ -70,6 +70,8 @@ public class SubredditActivity extends Activity {
 
     @UiThread
     protected void bindAdapter() {
+        this.getActionBar().setTitle(this.getSubredditName());
+
         this.lvSubredditPosts.setAdapter(this.postListAdapter);
         this.lvSubredditPosts.setOnScrollListener(new EndlessScrollListener(10) {
             @Override
@@ -92,6 +94,14 @@ public class SubredditActivity extends Activity {
                 SubredditActivity.this.showSubmissionDetails(submission);
             }
         });
+    }
+
+    private String getSubredditName() {
+        if (this.subreddit == null || this.subreddit.length() <= 0) {
+            return "Front Page";
+        } else {
+            return this.subreddit;
+        }
     }
 
     protected void showSubmissionDetails(Submission submission) {
