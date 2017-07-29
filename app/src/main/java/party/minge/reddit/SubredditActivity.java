@@ -1,9 +1,17 @@
 package party.minge.reddit;
 
 import android.app.Activity;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import net.dean.jraw.models.Submission;
@@ -20,6 +28,7 @@ import org.androidannotations.annotations.ViewById;
 
 import party.minge.reddit.client.AuthenticationCallback;
 import party.minge.reddit.client.Manager;
+import party.minge.reddit.menu.SidebarMenuAdapter;
 
 @EActivity(R.layout.activity_subreddit)
 public class SubredditActivity extends Activity {
@@ -37,6 +46,17 @@ public class SubredditActivity extends Activity {
     @ViewById
     protected ListView lvSubredditPosts;
 
+    @ViewById
+    protected DrawerLayout layoutDrawer;
+
+    protected ActionBarDrawerToggle drawerListener;
+
+    @ViewById
+    protected ListView lvDrawer;
+
+    @Bean
+    protected SidebarMenuAdapter sidebarMenuAdapter;
+
     @AfterInject
     protected void createPaginator() {
         this.paginator = new SubredditPaginator(this.manager.getClient());
@@ -44,6 +64,50 @@ public class SubredditActivity extends Activity {
         if (this.subreddit != null && this.subreddit.length() > 0) {
             this.paginator.setSubreddit(this.subreddit);
         }
+    }
+
+    @AfterViews
+    protected void setupDrawer() {
+        this.layoutDrawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+        this.lvDrawer.setAdapter(this.sidebarMenuAdapter);
+        this.lvDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SubredditActivity.this.sidebarMenuAdapter.getItem(i).onClick();
+            }
+        });
+
+        this.drawerListener = new ActionBarDrawerToggle(
+                this,
+                this.layoutDrawer,
+                R.string.drawerOpen,
+                R.string.drawerClose
+        ) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                SubredditActivity.this.invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                SubredditActivity.this.invalidateOptionsMenu();
+            }
+        };
+
+        this.layoutDrawer.setDrawerListener(this.drawerListener);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (this.drawerListener.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @AfterViews

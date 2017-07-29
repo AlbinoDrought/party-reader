@@ -18,6 +18,9 @@
     -->
     <!-- End Login -->
 
+    <string name="drawerOpen">Open Drawer</string>
+    <string name="drawerClose">Close Drawer</string>
+
     <string name="title_activity_login">Login</string>
     <string name="title_activity_subreddit">Front Page</string>
     <string name="title_activity_submission_detail">Post Details</string>
