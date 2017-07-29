@@ -2,13 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.joanzapata.iconify.widget.IconTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="{md-person}"/>
+        android:text="{md-person}"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_text"
         android:text="Login"
-        android:paddingStart="@dimen/padding_text"/>
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 </LinearLayout>

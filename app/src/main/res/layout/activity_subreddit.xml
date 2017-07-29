@@ -28,9 +28,12 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/background_floating_material_light"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="#111"/>
+        android:paddingLeft="@dimen/padding_text"
+        android:paddingRight="@dimen/padding_text"
+        android:paddingTop="@dimen/padding_text" />
 
 </android.support.v4.widget.DrawerLayout>
