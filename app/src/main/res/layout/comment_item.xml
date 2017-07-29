@@ -21,26 +21,30 @@
             android:id="@+id/txtCommentAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_text"
             android:layout_weight="1"
-            tools:text="seanshoots"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="seanshoots" />
 
         <TextView
             android:id="@+id/txtCommentScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_text"
+            android:layout_marginStart="@dimen/padding_text"
             android:layout_weight="1"
-            tools:text="5 points"
             android:textAllCaps="false"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            tools:text="5 points" />
 
         <TextView
             android:id="@+id/txtCommentTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_text"
             android:layout_weight="1"
-            tools:text="5 hours ago"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            tools:text="5 hours ago" />
 
     </LinearLayout>
 
