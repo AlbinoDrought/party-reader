@@ -80,8 +80,15 @@ public class DetailedPostItemView extends LinearLayout {
         this.txtPostDate.setText(submission.getCreated().toString());
         this.txtPostComments.setText(this.getPostComments(submission));
         this.txtPostVotes.setText(String.format(Locale.US, "%d points (%d%% upvoted)", submission.getScore(), submission.getUpvoteRatio().intValue()));
-        this.txtPostSubreddit.setText(submission.getSubredditName());
-        this.txtPostBody.setText(submission.getSelftext());
+
+        String selfText = submission.getSelftext();
+
+        if (selfText != null && selfText.length() > 0) {
+            this.txtPostBody.setText(selfText);
+            this.txtPostBody.setVisibility(VISIBLE);
+        } else {
+            this.txtPostBody.setVisibility(GONE);
+        }
 
         Thumbnails thumbnails = submission.getThumbnails();
 
