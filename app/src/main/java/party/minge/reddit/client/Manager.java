@@ -1,7 +1,10 @@
 package party.minge.reddit.client;
 
+import android.util.Log;
+
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.auth.AuthenticationManager;
+import net.dean.jraw.auth.AuthenticationState;
 import net.dean.jraw.auth.RefreshTokenHandler;
 import net.dean.jraw.auth.TokenStore;
 import net.dean.jraw.http.oauth.Credentials;
@@ -47,8 +50,21 @@ public class Manager {
      * @param authenticationCallback Methods to call on success or failure.
      */
     public void authenticateIfRequired(AuthenticationCallback authenticationCallback) {
-        if (this.getClient().isAuthenticated()) {
+        AuthenticationState state = AuthenticationManager.get().checkAuthState();
+
+        if (state == AuthenticationState.READY) {
             authenticationCallback.onSuccessfulAuthentication();
+            return;
+        }
+
+        if (state == AuthenticationState.NEED_REFRESH) {
+            try {
+                this.authenticationManager.refreshAccessToken(this.getCredentials());
+                authenticationCallback.onSuccessfulAuthentication();
+            } catch (Exception ex) {
+                authenticationCallback.onFailedAuthentication(ex);
+            }
+
             return;
         }
 
