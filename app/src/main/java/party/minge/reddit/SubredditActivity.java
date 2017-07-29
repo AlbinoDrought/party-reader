@@ -89,12 +89,12 @@ public class SubredditActivity extends Activity {
         ) {
             @Override
             public void onDrawerOpened(View drawerView) {
-                SubredditActivity.this.invalidateOptionsMenu();
+                SubredditActivity.this.sidebarMenuAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                SubredditActivity.this.invalidateOptionsMenu();
+                SubredditActivity.this.sidebarMenuAdapter.notifyDataSetChanged();
             }
         };
 
