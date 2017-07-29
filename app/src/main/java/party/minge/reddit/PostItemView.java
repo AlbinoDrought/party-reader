@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import net.dean.jraw.ApiException;
@@ -71,6 +72,8 @@ public class PostItemView extends LinearLayout {
     @ViewById
     protected TextView txtScore;
 
+    protected Target<?> glideTarget;
+
     @Bean
     protected Upvoter<Submission> upvoter;
 
@@ -124,8 +127,15 @@ public class PostItemView extends LinearLayout {
 
         Thumbnails thumbnails = submission.getThumbnails();
 
+        // stop loading the previous image
+        if (this.glideTarget != null) {
+            Glide.clear(this.glideTarget);
+            this.glideTarget = null;
+        }
+
         if (thumbnails != null) {
-            Glide
+            // store target so it can be cancelled later
+            this.glideTarget = Glide
                 .with(this.getContext())
                 .load(thumbnails.getSource().getUrl())
                 .centerCrop()
