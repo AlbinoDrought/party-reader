@@ -2,6 +2,7 @@ package party.minge.reddit;
 
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -77,7 +78,7 @@ public class DetailedPostItemView extends LinearLayout {
 
         this.txtPostTitle.setText(submission.getTitle());
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
-        this.txtPostDate.setText(submission.getCreated().toString());
+        this.txtPostDate.setText(DateUtils.getRelativeTimeSpanString(submission.getCreated().getTime()));
         this.txtPostComments.setText(this.getPostComments(submission));
         this.txtPostVotes.setText(String.format(Locale.US, "%d points (%d%% upvoted)", submission.getScore(), submission.getUpvoteRatio().intValue()));
 

@@ -1,6 +1,7 @@
 package party.minge.reddit;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,7 +59,7 @@ public class CommentItemView extends LinearLayout {
 
         this.txtCommentAuthor.setText(c.getAuthor());
         this.txtCommentScore.setText(c.getScore() + " points");
-        this.txtCommentTime.setText(c.getCreated().toString());
+        this.txtCommentTime.setText(DateUtils.getRelativeTimeSpanString(c.getCreated().getTime()));
 
         // TODO: markdown?
         this.txtCommentText.setText(c.getBody());
