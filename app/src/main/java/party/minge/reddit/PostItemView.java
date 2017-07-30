@@ -162,6 +162,15 @@ public class PostItemView extends LinearLayout {
 
     @UiThread
     protected void updateVoteColors(VoteDirection voteDirection) {
+        Integer newScore = this.submission.getScore();
+
+        if (voteDirection == VoteDirection.UPVOTE) {
+            newScore += 1;
+        } else if(voteDirection == VoteDirection.DOWNVOTE) {
+            newScore -= 1;
+        }
+
+        this.txtScore.setText(newScore.toString());
         this.btnUpvote.setTextColor(voteDirection == VoteDirection.UPVOTE ? this.colorUpvote : this.colorNoVote);
         this.btnDownvote.setTextColor(voteDirection == VoteDirection.DOWNVOTE ? this.colorDownvote : this.colorNoVote);
     }
