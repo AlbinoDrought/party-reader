@@ -77,6 +77,15 @@ public class DetailedPostItemView extends LinearLayout {
             }
         });
 
+        this.txtPostSubreddit.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SubredditActivity_.intent(DetailedPostItemView.this.getContext())
+                        .subreddit(DetailedPostItemView.this.submission.getSubredditName())
+                        .start();
+            }
+        });
+
         this.txtPostBody.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -87,6 +96,7 @@ public class DetailedPostItemView extends LinearLayout {
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
         this.txtPostDate.setText(DateUtils.getRelativeTimeSpanString(submission.getCreated().getTime()));
         this.txtPostComments.setText(this.getPostComments(submission));
+        this.txtPostSubreddit.setText(this.getSubredditText(submission));
         this.txtPostVotes.setText(this.getPostScoreText(submission));
 
         String selfText = submission.getSelftext();
@@ -134,11 +144,14 @@ public class DetailedPostItemView extends LinearLayout {
     }
 
     private String getPostSubtext(Submission submission) {
-        String subreddit = submission.getSubredditName();
         String submitter = submission.getAuthor();
         String domain = submission.getDomain();
 
-        return String.format("to %s by %s (%s)", subreddit, submitter, domain);
+        return String.format("by %s (%s)", submitter, domain);
+    }
+
+    private String getSubredditText(Submission submission) {
+        return String.format("r/%s", submission.getSubredditName());
     }
 
     private String getPostComments(Submission submission) {
