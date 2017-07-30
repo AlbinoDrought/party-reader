@@ -12,7 +12,7 @@ Feature          | Priority | Implemented
 Login            | High     | Yes
 Logout           | High     | Yes
 Front Page View  | High     | Yes
-Subreddit View   | High     | **No**
+Subreddit View   | High     | Yes
 Post Details     | High     | Yes
 Comment CRUD     | High     | **No**
 Post CRUD        | Med      | **No**
