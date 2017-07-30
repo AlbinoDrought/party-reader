@@ -5,6 +5,8 @@
     android:id="@+id/grpMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/padding_text"
+    android:layout_marginRight="@dimen/padding_text"
     android:orientation="vertical"
     tools:context="party.minge.reddit.SubmissionDetailActivity">
 
