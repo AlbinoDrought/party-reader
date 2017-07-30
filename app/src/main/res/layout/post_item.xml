@@ -10,7 +10,7 @@
     tools:context="party.minge.reddit.PostItemView">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/padding_text"
         android:gravity="center_vertical"
