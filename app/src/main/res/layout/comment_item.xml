@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/grpMain"
     android:layout_width="match_parent"
@@ -10,12 +11,14 @@
     android:paddingTop="@dimen/padding_text"
     tools:context="party.minge.reddit.PostItemView">
 
-    <LinearLayout
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/padding_comment"
         android:layout_marginTop="@dimen/padding_comment"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:flexDirection="row"
+        app:flexWrap="wrap">
 
         <TextView
             android:id="@+id/txtCommentAuthor"
@@ -46,7 +49,7 @@
             android:textColor="@android:color/darker_gray"
             tools:text="5 hours ago" />
 
-    </LinearLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 
     <TextView
         android:id="@+id/txtCommentText"
