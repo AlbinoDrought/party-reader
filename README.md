@@ -7,8 +7,8 @@ A basic Android application for Reddit, started as a class project. Still a work
 
 ## Feature Roadmap
 
-Feature          | Priority | Finished
----------------- | :------: | --------
+Feature          | Priority | Implemented
+---------------- | :------: | -----------
 Login            | High     | Yes
 Logout           | High     | Yes
 Front Page View  | High     | Yes
