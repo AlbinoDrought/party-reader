@@ -6,7 +6,7 @@
 
     <color name="colorNoVote">#000000</color>
     <color name="colorUpvote">#FF5722</color>
-    <color name="colorDownvote">#3F51B5</color>
+    <color name="colorDownvote">#22A7F0</color>
 
     <color name="colorDepth1">#4183D7</color>
     <color name="colorDepth2">#00B16A</color>
