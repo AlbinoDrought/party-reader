@@ -101,6 +101,7 @@ public class DetailedPostItemView extends LinearLayout {
         Thumbnails thumbnails = submission.getThumbnails();
 
         if (thumbnails != null) {
+            this.imgPostThumbnail.setVisibility(VISIBLE);
             Glide
                 .with(this.getContext())
                 .load(thumbnails.getSource().getUrl())
@@ -109,6 +110,7 @@ public class DetailedPostItemView extends LinearLayout {
                 .crossFade()
                 .into(this.imgPostThumbnail);
         } else {
+            this.imgPostThumbnail.setVisibility(GONE);
             this.imgPostThumbnail.setImageResource(android.R.color.transparent);
         }
     }
