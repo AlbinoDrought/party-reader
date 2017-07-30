@@ -33,6 +33,8 @@ public class ViewSubreddit implements MenuItem {
     public void onClick() {
         final EditText editText = new EditText(this.rootContext);
 
+        editText.setHint("Subreddit name");
+
         new AlertDialog.Builder(this.rootContext)
             .setTitle("Go to subreddit")
             .setView(editText)
