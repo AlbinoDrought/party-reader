@@ -26,7 +26,7 @@ import party.minge.reddit.client.MarkdownParser;
 
 @EViewGroup(R.layout.comment_item)
 public class CommentItemView extends LinearLayout {
-    static final int MAX_DEPTH = 7;
+    static final int MAX_DEPTH = 15;
 
     protected CommentNode commentNode;
 
