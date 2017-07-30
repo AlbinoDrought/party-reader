@@ -70,6 +70,7 @@ public class SubredditActivity extends Activity {
     protected void setupDrawer() {
         this.layoutDrawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
+        getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
