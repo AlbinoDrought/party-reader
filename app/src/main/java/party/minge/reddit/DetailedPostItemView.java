@@ -87,7 +87,7 @@ public class DetailedPostItemView extends LinearLayout {
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
         this.txtPostDate.setText(DateUtils.getRelativeTimeSpanString(submission.getCreated().getTime()));
         this.txtPostComments.setText(this.getPostComments(submission));
-        this.txtPostVotes.setText(String.format(Locale.US, "%d points (%d%% upvoted)", submission.getScore(), submission.getUpvoteRatio().intValue()));
+        this.txtPostVotes.setText(this.getPostScoreText(submission));
 
         String selfText = submission.getSelftext();
 
@@ -125,6 +125,12 @@ public class DetailedPostItemView extends LinearLayout {
                 .url(this.submission.getUrl())
                 .domain(this.submission.getDomain())
                 .start();
+    }
+
+    private String getPostScoreText(Submission submission) {
+        Double upvoteRatio = submission.getUpvoteRatio() * 100;
+
+        return String.format(Locale.US, "%d points (%d%% upvoted)", submission.getScore(), upvoteRatio.intValue());
     }
 
     private String getPostSubtext(Submission submission) {
