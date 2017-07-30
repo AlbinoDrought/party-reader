@@ -2,6 +2,8 @@ package party.minge.reddit.menu;
 
 import android.content.Context;
 
+import net.dean.jraw.http.AuthenticationMethod;
+
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
@@ -23,7 +25,9 @@ public class SidebarMenuItemRepository {
     public MenuItem[] getMenuItems() {
         ArrayList<MenuItem> items = new ArrayList<>();
 
-        if (this.manager.getClient().isAuthenticated()) {
+        boolean authenticated = this.manager.getClient().isAuthenticated();
+        AuthenticationMethod authMethod = this.manager.getClient().getAuthenticationMethod();
+        if (authenticated && authMethod == AuthenticationMethod.APP) {
             // add logout button
             items.add(Logout_.getInstance_(this.rootContext));
         } else {
