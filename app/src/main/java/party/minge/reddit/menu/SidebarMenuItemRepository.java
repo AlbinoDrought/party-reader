@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import party.minge.reddit.client.Manager;
 import party.minge.reddit.menu.items.Login_;
 import party.minge.reddit.menu.items.Logout_;
+import party.minge.reddit.menu.items.ViewSubreddit_;
 
 @EBean
 public class SidebarMenuItemRepository {
@@ -33,6 +34,8 @@ public class SidebarMenuItemRepository {
         } else {
             items.add(Login_.getInstance_(this.rootContext));
         }
+
+        items.add(ViewSubreddit_.getInstance_(this.rootContext));
 
         MenuItem[] menuItems = new MenuItem[items.size()];
         return items.toArray(menuItems);
