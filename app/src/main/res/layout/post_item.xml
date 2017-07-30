@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -48,13 +49,15 @@
             tools:text="down" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/padding_text"
         android:layout_marginRight="@dimen/padding_text"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:flexDirection="column"
+        app:flexWrap="wrap">
 
         <TextView
             android:id="@+id/txtPostTitle"
@@ -87,7 +90,7 @@
             android:layout_weight="1"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
             tools:text="1337 comments" />
-    </LinearLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 
     <ImageView
         android:id="@+id/imgPostThumbnail"

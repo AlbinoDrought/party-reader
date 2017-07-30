@@ -4,6 +4,7 @@ package party.minge.reddit;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -119,7 +120,7 @@ public class PostItemView extends LinearLayout {
 
         this.txtPostTitle.setText(submission.getTitle());
         this.txtPostSubtext.setText(this.getPostSubtext(submission));
-        this.txtPostDate.setText(submission.getCreated().toString());
+        this.txtPostDate.setText(DateUtils.getRelativeTimeSpanString(submission.getCreated().getTime()));
         this.txtPostComments.setText(this.getPostComments(submission));
         this.txtScore.setText(String.format(Locale.US, "%d", submission.getScore()));
 

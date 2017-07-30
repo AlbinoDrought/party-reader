@@ -29,7 +29,7 @@ public class LoginActivity extends Activity {
     @ViewById
     protected WebView webviewLogin;
 
-    @Bean(Manager.class)
+    @Bean
     protected Manager manager;
 
     protected Credentials credentials;

@@ -7,4 +7,14 @@
     <color name="colorNoVote">#000000</color>
     <color name="colorUpvote">#FF5722</color>
     <color name="colorDownvote">#3F51B5</color>
+
+    <color name="colorDepth1">#4183D7</color>
+    <color name="colorDepth2">#00B16A</color>
+    <color name="colorDepth3">#E26A6A</color>
+
+    <array name="colorsDepth">
+        <item>@color/colorDepth1</item>
+        <item>@color/colorDepth2</item>
+        <item>@color/colorDepth3</item>
+    </array>
 </resources>

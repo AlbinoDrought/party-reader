@@ -7,26 +7,19 @@ A basic Android application for Reddit, started as a class project. Still a work
 
 ## Feature Roadmap
 
-- ~~Login~~
-
-- Logout
-
-- ~~Viewing the front page~~
-
-- Viewing a subreddit
-
-- Viewing post "details", ~~comments~~, etc
-
-- ~~Viewing post link without leaving application~~
-
-- Viewing user information (karma, comments, posts)
-
-- Comment C~~R~~UD
-
-- Post C~~R~~UD
-
-- Subscribing and usubscribing from subreddits
-
+Feature          | Priority | Finished
+---------------- | :------: | --------
+Login            | High     | Yes
+Logout           | High     | Yes
+Front Page View  | High     | Yes
+Subreddit View   | High     | **No**
+Post Details     | High     | Yes
+Comment CRUD     | High     | **No**
+Post CRUD        | Med      | **No**
+In-app Links     | Med      | Yes
+Out-of-app Links | Low      | **No**
+User View        | Low      | **No**
+Subreddit Sub    | Low      | **No**
 
 ## Usage
 

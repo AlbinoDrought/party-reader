@@ -5,4 +5,5 @@
     <dimen name="padding_text">15px</dimen>
     <dimen name="thumbnail_width">55dp</dimen>
     <dimen name="padding_comment">10px</dimen>
+    <dimen name="comment_bar_size">6dp</dimen>
 </resources>
