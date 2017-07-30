@@ -9,21 +9,23 @@ A basic Android application for Reddit, started as a class project. Still a work
 
 - ~~Login~~
 
-- Logout
+- ~~Logout~~
 
 - ~~Viewing the front page~~
 
 - Viewing a subreddit
 
-- Viewing post "details", ~~comments~~, etc
+- ~~Viewing post "details", comments, etc~~
 
 - ~~Viewing post link without leaving application~~
 
+- Opening Reddit urls with the app
+
 - Viewing user information (karma, comments, posts)
 
-- Comment C~~R~~UD
+- Comment C~~R~~UD, voting
 
-- Post C~~R~~UD
+- Post C~~R~~UD, ~~voting~~
 
 - Subscribing and usubscribing from subreddits
 
