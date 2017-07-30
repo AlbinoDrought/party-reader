@@ -1,7 +1,9 @@
 package party.minge.reddit;
 
 import android.content.Context;
+import android.text.Spannable;
 import android.text.format.DateUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -10,12 +12,17 @@ import android.widget.TextView;
 import net.dean.jraw.models.Comment;
 import net.dean.jraw.models.CommentNode;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DimensionPixelSizeRes;
 import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.IntArrayRes;
+
+import in.uncod.android.bypass.Bypass;
+import party.minge.reddit.client.MarkdownParser;
 
 @EViewGroup(R.layout.comment_item)
 public class CommentItemView extends LinearLayout {
@@ -47,8 +54,16 @@ public class CommentItemView extends LinearLayout {
     @ViewById
     protected TextView txtCommentText;
 
+    @Bean
+    protected MarkdownParser markdownParser;
+
     public CommentItemView(Context context) {
         super(context);
+    }
+
+    @AfterViews
+    protected void init() {
+        this.txtCommentText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public void bind(CommentNode commentNode) {
@@ -77,8 +92,7 @@ public class CommentItemView extends LinearLayout {
         this.txtCommentScore.setText(c.getScore() + " points");
         this.txtCommentTime.setText(DateUtils.getRelativeTimeSpanString(c.getCreated().getTime()));
 
-        // TODO: markdown?
-        this.txtCommentText.setText(c.getBody());
+        this.txtCommentText.setText(this.markdownParser.parseMarkdown(c.getBody()));
     }
 
     private int getColorForDepth(int depth) {
