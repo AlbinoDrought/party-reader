@@ -3,6 +3,7 @@ package party.minge.reddit;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import org.androidannotations.annotations.res.ColorRes;
 import java.util.Locale;
 
 import party.minge.reddit.client.Manager;
+import party.minge.reddit.client.MarkdownParser;
 import party.minge.reddit.client.Upvoter;
 import party.minge.reddit.client.VoteChangeListener;
 
@@ -57,6 +59,9 @@ public class DetailedPostItemView extends LinearLayout {
     @ViewById
     protected ImageView imgPostThumbnail;
 
+    @Bean
+    protected MarkdownParser markdownParser;
+
     protected Submission submission;
 
     public DetailedPostItemView(Context context) {
@@ -71,6 +76,8 @@ public class DetailedPostItemView extends LinearLayout {
                 DetailedPostItemView.this.viewPostResource();
             }
         });
+
+        this.txtPostBody.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public void bind(Submission submission) {
@@ -85,7 +92,7 @@ public class DetailedPostItemView extends LinearLayout {
         String selfText = submission.getSelftext();
 
         if (selfText != null && selfText.length() > 0) {
-            this.txtPostBody.setText(selfText);
+            this.txtPostBody.setText(this.markdownParser.parseMarkdown(selfText));
             this.txtPostBody.setVisibility(VISIBLE);
         } else {
             this.txtPostBody.setVisibility(GONE);
