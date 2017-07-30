@@ -5,6 +5,12 @@
 
 A basic Android application for Reddit, started as a class project. Still a work-in-progress.
 
+## Preview
+
+![Front Page](screenshots/front-page.png)
+
+![Comments](screenshots/comments.png)
+
 ## Feature Roadmap
 
 Feature          | Priority | Implemented
