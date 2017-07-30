@@ -11,10 +11,12 @@
     <color name="colorDepth1">#4183D7</color>
     <color name="colorDepth2">#00B16A</color>
     <color name="colorDepth3">#E26A6A</color>
+    <color name="colorDepth4">#F4D03F</color>
 
     <array name="colorsDepth">
         <item>@color/colorDepth1</item>
         <item>@color/colorDepth2</item>
         <item>@color/colorDepth3</item>
+        <item>@color/colorDepth4</item>
     </array>
 </resources>
