@@ -95,7 +95,6 @@
         android:layout_marginBottom="@dimen/padding_text"
         android:layout_marginTop="@dimen/padding_text"
         android:layout_weight="1"
-        android:autoLink="web"
         tools:text="  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut dolor venenatis diam varius fringilla id sit amet mauris. Etiam sed purus nibh. Aliquam non sodales metus. Nullam bibendum volutpat iaculis. Aliquam erat volutpat. Sed tortor sem, egestas nec pellentesque vitae, vehicula placerat nibh. Vivamus metus lorem, euismod nec lorem non, ultrices tincidunt diam. Integer leo massa, tempor id ante eget, tempor vehicula est. Vivamus finibus consectetur massa quis fermentum.  Donec vitae aliquam neque. Nulla dictum sodales mattis. Morbi convallis lorem sed porta rhoncus. Aliquam erat volutpat. Suspendisse tincidunt hendrerit maximus. Curabitur est sapien, fringilla a consectetur sed, bibendum et dui. Aenean efficitur hendrerit ex, feugiat congue odio interdum sit amet. Aliquam semper ligula non porttitor luctus. Aliquam erat volutpat. Donec vitae dui nulla. Duis et porttitor nulla. Mauris quis massa erat. " />
 
 </LinearLayout>

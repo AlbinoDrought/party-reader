@@ -116,7 +116,6 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="@dimen/padding_comment"
                 android:layout_weight="1"
-                android:autoLink="web"
                 tools:text="Wow, these memes are really dank! Thanks! http://minge.party/" />
 
         </LinearLayout>
