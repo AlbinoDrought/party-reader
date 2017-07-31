@@ -27,6 +27,7 @@ public class PostListAdapter extends BaseAdapter {
 
     public void setPaginator(SubredditPaginator paginator) {
         this.paginator = paginator;
+        this.posts = new ArrayList<>();
         // automatically populate with posts
         this.gotoNextPage();
     }
@@ -38,10 +39,6 @@ public class PostListAdapter extends BaseAdapter {
         // paginator.next returns listings,
         // and listings cannot be modified
         Listing<Submission> newPages = this.paginator.next();
-
-        if (this.posts == null) {
-            this.posts = new ArrayList<>();
-        }
 
         for (Submission page : newPages) {
             this.posts.add(page);
