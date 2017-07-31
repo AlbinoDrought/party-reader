@@ -11,6 +11,7 @@ import org.androidannotations.annotations.RootContext;
 import java.util.ArrayList;
 
 import party.minge.reddit.client.Manager;
+import party.minge.reddit.menu.items.About_;
 import party.minge.reddit.menu.items.Login_;
 import party.minge.reddit.menu.items.Logout_;
 import party.minge.reddit.menu.items.ViewSubreddit_;
@@ -36,6 +37,8 @@ public class SidebarMenuItemRepository {
         }
 
         items.add(ViewSubreddit_.getInstance_(this.rootContext));
+
+        items.add(About_.getInstance_(this.rootContext));
 
         MenuItem[] menuItems = new MenuItem[items.size()];
         return items.toArray(menuItems);

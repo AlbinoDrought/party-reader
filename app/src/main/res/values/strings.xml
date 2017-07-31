@@ -25,4 +25,20 @@
     <string name="title_activity_subreddit">Front Page</string>
     <string name="title_activity_submission_detail">Post Details</string>
     <string name="title_activity_external_web_resource">Browser</string>
+
+    <string name="about">"
+# PartyReader
+
+A basic Android application for Reddit, started as a class project. Still a work-in-progress.
+
+Developed by AlbinoDrought (/u/seanshoots)
+
+## License
+
+Licensed under GPL-3.0
+
+## Source
+
+https://github.com/AlbinoDrought/party-reader
+    "</string>
 </resources>
