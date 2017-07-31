@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
@@ -40,6 +41,9 @@ public class SubmissionDetailActivity extends Activity {
     @ViewById
     protected LinearLayout grpMain;
 
+    @ViewById
+    protected ProgressBar loader;
+
     protected TreeNode treeNode;
 
     @AfterViews
@@ -58,6 +62,8 @@ public class SubmissionDetailActivity extends Activity {
 
     @UiThread
     protected void setAdapter() {
+        this.loader.setVisibility(View.GONE);
+
         AndroidTreeView treeView = new AndroidTreeView(this, this.treeNode);
         this.grpMain.addView(treeView.getView());
     }

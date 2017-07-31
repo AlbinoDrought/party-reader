@@ -9,5 +9,8 @@
     android:layout_marginRight="@dimen/padding_text"
     android:orientation="vertical"
     tools:context="party.minge.reddit.SubmissionDetailActivity">
-
+    <ProgressBar
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
