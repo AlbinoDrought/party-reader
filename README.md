@@ -20,7 +20,7 @@ Logout           | High     | Yes
 Front Page View  | High     | Yes
 Subreddit View   | High     | Yes
 Post Details     | High     | Yes
-Comment CRUD     | High     | **No**
+Comment CRUD     | High     | Posting (needs U/D)
 Post CRUD        | Med      | **No**
 In-app Links     | Med      | Yes
 Out-of-app Links | Low      | **No**
