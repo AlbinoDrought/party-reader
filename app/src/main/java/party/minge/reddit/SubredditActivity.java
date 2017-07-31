@@ -3,6 +3,7 @@ package party.minge.reddit;
 import android.app.Activity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -63,6 +64,9 @@ public class SubredditActivity extends Activity {
     @Bean
     protected SidebarMenuAdapter sidebarMenuAdapter;
 
+    @ViewById
+    protected SwipeRefreshLayout grpSwipeRefresh;
+
     @AfterInject
     protected void createPaginator() {
         this.paginator = new SubredditPaginator(this.manager.getClient());
@@ -106,6 +110,13 @@ public class SubredditActivity extends Activity {
         };
 
         this.layoutDrawer.setDrawerListener(this.drawerListener);
+
+        this.grpSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                SubredditActivity.this.fetchPosts();
+            }
+        });
     }
 
     @Override
@@ -135,12 +146,14 @@ public class SubredditActivity extends Activity {
 
     @Background
     protected void fetchPosts() {
+        this.paginator.reset();
         this.postListAdapter.setPaginator(this.paginator);
         this.bindAdapter();
     }
 
     @UiThread
     protected void bindAdapter() {
+        this.grpSwipeRefresh.setRefreshing(false);
         this.loader.setVisibility(View.GONE);
         this.lvSubredditPosts.setVisibility(View.VISIBLE);
 
