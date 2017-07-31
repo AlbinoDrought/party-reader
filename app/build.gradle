@@ -31,19 +31,42 @@ android {
 def AAVersion = "4.3.0"
 def jrawVersion = "0.9.0"
 
+def googleVersion = "25.3.1"
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    compile "com.android.support:support-v4:$googleVersion"
+    compile "com.android.support:appcompat-v7:$googleVersion"
+    compile "com.android.support:support-annotations:$googleVersion"
+
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile "net.dean.jraw:JRAW:$jrawVersion" // reddit api wrapper
     compile 'com.github.bumptech.glide:glide:3.7.0' // image loading
-    compile 'com.github.bmelnychuk:atv:1.2.+' // treeview
-    compile 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
-    compile 'com.google.android:flexbox:0.3.0' // flexbox
-    compile 'com.github.Commit451:bypasses:1.1.0' // markdown
-    compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.0' // swipe layout
+    compile ('com.github.bmelnychuk:atv:1.2.+') {
+        exclude module: 'support-v4'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-annotations'
+    } // treeview
+    compile ('com.joanzapata.iconify:android-iconify-material:2.2.2') {
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    } // (v2.0.0)
+    compile ('com.google.android:flexbox:0.3.0') {
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    } // flexbox
+    compile ('com.github.Commit451:bypasses:1.1.0') {
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    } // markdown
+    compile ('com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.0') {
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    } // swipe layout
     testCompile 'junit:junit:4.12'
 }
