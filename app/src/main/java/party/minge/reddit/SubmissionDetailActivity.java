@@ -2,6 +2,7 @@ package party.minge.reddit;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -46,6 +47,23 @@ public class SubmissionDetailActivity extends Activity {
 
     protected TreeNode treeNode;
 
+    @ViewById
+    protected SwipeRefreshLayout grpSwipeRefresh;
+
+    @AfterViews
+    protected void setupRefresh() {
+        this.grpSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                SubmissionDetailActivity_.intent(SubmissionDetailActivity.this)
+                        .submissionId(SubmissionDetailActivity.this.submissionId)
+                        .start();
+
+                SubmissionDetailActivity.this.finish();
+            }
+        });
+    }
+
     @AfterViews
     protected void hideActionBar() {
         this.getActionBar().hide();
@@ -62,9 +80,10 @@ public class SubmissionDetailActivity extends Activity {
 
     @UiThread
     protected void setAdapter() {
+        this.grpSwipeRefresh.setRefreshing(false);
         this.loader.setVisibility(View.GONE);
 
         AndroidTreeView treeView = new AndroidTreeView(this, this.treeNode);
-        this.grpMain.addView(treeView.getView());
+        this.grpSwipeRefresh.addView(treeView.getView());
     }
 }
