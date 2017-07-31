@@ -26,7 +26,9 @@ c. presentation (image(s), layout, texts, etc...)
 
 d. Some form of computation and displaying the results
 
-- Traversing recursive comment tree to show children, including comment depth
+- Traversing recursive comment tree to show children
+
+- Calculation of comment indentation based on depth
 
 e. 3 Activities (or more)
 
