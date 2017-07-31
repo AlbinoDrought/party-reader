@@ -1,82 +1,125 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/grpMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingBottom="@dimen/padding_text"
-    android:paddingLeft="@dimen/padding_text"
-    android:paddingRight="@dimen/padding_text"
-    android:paddingTop="@dimen/padding_text"
-    android:showDividers="beginning|middle|end"
-    tools:context="party.minge.reddit.PostItemView">
+    app:dragEdge="left"
+    app:mode="same_level">
 
-    <View
-        android:id="@+id/vBar"
-        android:layout_width="@dimen/comment_bar_size"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/padding_text"
-        android:background="@android:color/holo_blue_dark" />
-
+    <!-- swipe controls -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_text"
-        android:layout_marginEnd="@dimen/padding_text"
-        android:layout_marginStart="@dimen/padding_text"
-        android:layout_marginTop="@dimen/padding_text"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="match_parent"
+        <com.joanzapata.iconify.widget.IconButton
+            android:id="@+id/btnUpvote"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/padding_comment"
-            android:layout_marginTop="@dimen/padding_comment"
-            android:orientation="horizontal"
-            app:flexDirection="row"
-            app:flexWrap="wrap">
-
-            <TextView
-                android:id="@+id/txtCommentAuthor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/padding_text"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                tools:text="seanshoots" />
-
-            <TextView
-                android:id="@+id/txtCommentScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/padding_text"
-                android:layout_marginStart="@dimen/padding_text"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:textColor="@android:color/darker_gray"
-                tools:text="5 points" />
-
-            <TextView
-                android:id="@+id/txtCommentTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_text"
-                android:layout_weight="1"
-                android:textColor="@android:color/darker_gray"
-                tools:text="5 hours ago" />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <TextView
-            android:id="@+id/txtCommentText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/padding_comment"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:autoLink="web"
-            tools:text="Wow, these memes are really dank! Thanks! http://minge.party/" />
+            android:text="{md-keyboard-arrow-up}"
+            android:textSize="30sp" />
 
+        <com.joanzapata.iconify.widget.IconButton
+            android:id="@+id/btnDownvote"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="{md-keyboard-arrow-down}"
+            android:textSize="30sp" />
+
+        <com.joanzapata.iconify.widget.IconButton
+            android:id="@+id/btnReply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="{md-comment}"
+            android:textSize="30sp" />
     </LinearLayout>
 
-</LinearLayout>
+    <!-- actual comment view -->
+    <LinearLayout
+        android:id="@+id/grpMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_text"
+        android:paddingLeft="@dimen/padding_text"
+        android:paddingRight="@dimen/padding_text"
+        android:paddingTop="@dimen/padding_text"
+        android:showDividers="beginning|middle|end"
+        android:visibility="visible"
+        tools:context="party.minge.reddit.PostItemView">
+
+        <View
+            android:id="@+id/vBar"
+            android:layout_width="@dimen/comment_bar_size"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/padding_text"
+            android:background="@android:color/holo_blue_dark" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_text"
+            android:layout_marginEnd="@dimen/padding_text"
+            android:layout_marginStart="@dimen/padding_text"
+            android:layout_marginTop="@dimen/padding_text"
+            android:orientation="vertical">
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/padding_comment"
+                android:layout_marginTop="@dimen/padding_comment"
+                android:orientation="horizontal"
+                app:flexDirection="row"
+                app:flexWrap="wrap">
+
+                <TextView
+                    android:id="@+id/txtCommentAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_text"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    tools:text="seanshoots" />
+
+                <TextView
+                    android:id="@+id/txtCommentScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_text"
+                    android:layout_marginStart="@dimen/padding_text"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/darker_gray"
+                    tools:text="5 points" />
+
+                <TextView
+                    android:id="@+id/txtCommentTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_text"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/darker_gray"
+                    tools:text="5 hours ago" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:id="@+id/txtCommentText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/padding_comment"
+                android:layout_weight="1"
+                android:autoLink="web"
+                tools:text="Wow, these memes are really dank! Thanks! http://minge.party/" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>
