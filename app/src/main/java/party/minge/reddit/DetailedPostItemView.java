@@ -10,8 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.joanzapata.iconify.widget.IconButton;
 import com.joanzapata.iconify.widget.IconTextView;
 
+import net.dean.jraw.models.Comment;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.Thumbnails;
 import net.dean.jraw.models.VoteDirection;
@@ -25,8 +27,10 @@ import org.androidannotations.annotations.res.ColorRes;
 
 import java.util.Locale;
 
+import party.minge.reddit.client.DialogReplyListener;
 import party.minge.reddit.client.Manager;
 import party.minge.reddit.client.MarkdownParser;
+import party.minge.reddit.client.Replier;
 import party.minge.reddit.client.Upvoter;
 import party.minge.reddit.client.VoteChangeListener;
 
@@ -62,6 +66,32 @@ public class DetailedPostItemView extends LinearLayout {
     @Bean
     protected MarkdownParser markdownParser;
 
+    @ViewById
+    protected IconButton btnUpvote;
+
+    @ViewById
+    protected IconButton btnDownvote;
+
+    @ViewById
+    protected IconButton btnReply;
+
+    @Bean
+    protected Upvoter<Submission> upvoter;
+
+    @Bean
+    protected Replier<Submission> replier;
+
+    @ColorRes(R.color.colorUpvote)
+    protected int colorUpvote;
+
+    @ColorRes(R.color.colorDownvote)
+    protected int colorDownvote;
+
+    @ColorRes(R.color.colorNoVote)
+    protected int colorNoVote;
+
+    private int colorScore;
+
     protected Submission submission;
 
     public DetailedPostItemView(Context context) {
@@ -70,6 +100,8 @@ public class DetailedPostItemView extends LinearLayout {
 
     @AfterViews
     protected void initClickListeners() {
+        this.colorScore = this.txtPostVotes.getCurrentTextColor();
+
         this.imgPostThumbnail.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +118,68 @@ public class DetailedPostItemView extends LinearLayout {
             }
         });
 
+        this.upvoter.setVoteChangeListener(new VoteChangeListener() {
+            @Override
+            public void onVoteChanged(VoteDirection voteDirection) {
+                DetailedPostItemView.this.setVoteDirection(voteDirection);
+            }
+        });
+
+        this.btnUpvote.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailedPostItemView.this.upvoter.performVote(VoteDirection.UPVOTE);
+            }
+        });
+
+        this.btnDownvote.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailedPostItemView.this.upvoter.performVote(VoteDirection.DOWNVOTE);
+            }
+        });
+
+        this.btnReply.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Submission submission = DetailedPostItemView.this.submission;
+                DetailedPostItemView.this.replier.replyTo(submission);
+            }
+        });
+
+        this.replier.setReplyListener(new DialogReplyListener(this.getContext(), "Error replying to post") {
+            @Override
+            public void onSuccess(String id) {
+                String submissionId = DetailedPostItemView.this.submission.getId();
+                SubmissionDetailActivity_.intent(DetailedPostItemView.this.getContext())
+                        .submissionId(submissionId)
+                        .start();
+            }
+        });
+
         this.txtPostBody.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @UiThread
+    protected void setVoteDirection(VoteDirection voteDirection) {
+        int dvColor = this.colorNoVote;
+        int uvColor = this.colorNoVote;
+        int gColor = this.colorScore;
+
+        switch (voteDirection) {
+            case UPVOTE:
+                uvColor = this.colorUpvote;
+                gColor = this.colorUpvote;
+                break;
+            case DOWNVOTE:
+                dvColor = this.colorDownvote;
+                gColor = this.colorDownvote;
+                break;
+        }
+
+        this.btnDownvote.setTextColor(dvColor);
+        this.btnUpvote.setTextColor(uvColor);
+        this.txtPostVotes.setTextColor(gColor);
     }
 
     public void bind(Submission submission) {
@@ -123,6 +216,8 @@ public class DetailedPostItemView extends LinearLayout {
             this.imgPostThumbnail.setVisibility(GONE);
             this.imgPostThumbnail.setImageResource(android.R.color.transparent);
         }
+
+        this.upvoter.setUpvotable(submission);
     }
 
     private void viewPostResource() {
