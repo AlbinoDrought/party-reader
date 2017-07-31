@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.SubredditPaginator;
@@ -29,6 +30,8 @@ import org.androidannotations.annotations.ViewById;
 import party.minge.reddit.client.AuthenticationCallback;
 import party.minge.reddit.client.Manager;
 import party.minge.reddit.menu.SidebarMenuAdapter;
+
+import static android.view.View.GONE;
 
 @EActivity(R.layout.activity_subreddit)
 public class SubredditActivity extends Activity {
@@ -53,6 +56,9 @@ public class SubredditActivity extends Activity {
 
     @ViewById
     protected ListView lvDrawer;
+
+    @ViewById
+    protected ProgressBar loader;
 
     @Bean
     protected SidebarMenuAdapter sidebarMenuAdapter;
@@ -135,6 +141,9 @@ public class SubredditActivity extends Activity {
 
     @UiThread
     protected void bindAdapter() {
+        this.loader.setVisibility(View.GONE);
+        this.lvSubredditPosts.setVisibility(View.VISIBLE);
+
         this.getActionBar().setTitle(this.getSubredditName());
 
         this.lvSubredditPosts.setAdapter(this.postListAdapter);
