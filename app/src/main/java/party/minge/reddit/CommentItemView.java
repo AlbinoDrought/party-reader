@@ -1,5 +1,6 @@
 package party.minge.reddit;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.format.DateUtils;
@@ -13,6 +14,7 @@ import com.joanzapata.iconify.widget.IconButton;
 
 import net.dean.jraw.models.Comment;
 import net.dean.jraw.models.CommentNode;
+import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.VoteDirection;
 
 import org.androidannotations.annotations.AfterInject;
@@ -28,6 +30,7 @@ import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.IntArrayRes;
 
 import in.uncod.android.bypass.Bypass;
+import party.minge.reddit.client.DialogReplyListener;
 import party.minge.reddit.client.Manager;
 import party.minge.reddit.client.MarkdownParser;
 import party.minge.reddit.client.Replier;
@@ -105,6 +108,16 @@ public class CommentItemView extends LinearLayout {
             @Override
             public void onVoteChanged(VoteDirection voteDirection) {
                 CommentItemView.this.setVoteDirection(voteDirection);
+            }
+        });
+
+        this.replier.setReplyListener(new DialogReplyListener(this.getContext(), "Error replying to comment") {
+            @Override
+            public void onSuccess(String id) {
+                String submissionId = CommentItemView.this.commentNode.getComment().getSubmissionId();
+                SubmissionDetailActivity_.intent(CommentItemView.this.getContext())
+                        .submissionId(submissionId)
+                        .start();
             }
         });
 
