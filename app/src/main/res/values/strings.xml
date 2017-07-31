@@ -22,7 +22,7 @@
     <string name="drawerClose">Close Drawer</string>
 
     <string name="title_activity_login">Login</string>
-    <string name="title_activity_subreddit">Front Page</string>
+    <string name="title_activity_subreddit">PartyReader</string>
     <string name="title_activity_submission_detail">Post Details</string>
     <string name="title_activity_external_web_resource">Browser</string>
 
