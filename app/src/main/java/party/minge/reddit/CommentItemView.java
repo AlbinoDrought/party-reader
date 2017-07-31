@@ -17,6 +17,7 @@ import net.dean.jraw.models.VoteDirection;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.UiThread;
@@ -27,7 +28,9 @@ import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.IntArrayRes;
 
 import in.uncod.android.bypass.Bypass;
+import party.minge.reddit.client.Manager;
 import party.minge.reddit.client.MarkdownParser;
+import party.minge.reddit.client.Replier;
 import party.minge.reddit.client.Upvoter;
 import party.minge.reddit.client.VoteChangeListener;
 
@@ -73,6 +76,9 @@ public class CommentItemView extends LinearLayout {
     @Bean
     protected Upvoter<Comment> upvoter;
 
+    @Bean
+    protected Replier<Comment> replier;
+
     @ColorRes(R.color.colorUpvote)
     protected int colorUpvote;
 
@@ -113,6 +119,14 @@ public class CommentItemView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 CommentItemView.this.upvoter.performVote(VoteDirection.DOWNVOTE);
+            }
+        });
+
+        this.btnReply.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Comment comment = CommentItemView.this.commentNode.getComment();
+                CommentItemView.this.replier.replyTo(comment);
             }
         });
 
