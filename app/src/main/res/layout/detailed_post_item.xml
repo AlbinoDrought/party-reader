@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/padding_text"
-    android:paddingLeft="@dimen/padding_text"
-    android:paddingRight="@dimen/padding_text"
-    android:paddingTop="@dimen/padding_text"
+    android:layout_marginBottom="@dimen/padding_text"
+    android:layout_marginLeft="@dimen/padding_text"
+    android:layout_marginRight="@dimen/padding_text"
+    android:layout_marginTop="@dimen/padding_text"
     tools:context="party.minge.reddit.PostItemView">
 
     <LinearLayout
