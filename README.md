@@ -40,3 +40,11 @@ Subreddit Sub    | Low      | **No**
 - [JRAW](https://github.com/thatJavaNerd/JRAW)
 
 - [Android Annotations](https://github.com/androidannotations/androidannotations)
+
+- [Glide](https://github.com/bumptech/glide)
+
+- [AndroidTreeView](https://github.com/bmelnychuk/AndroidTreeView)
+
+- [Bypasses, Commit451 fork](https://github.com/Commit451/bypasses)
+
+- [SwipeRevealLayout](https://github.com/chthai64/SwipeRevealLayout)
